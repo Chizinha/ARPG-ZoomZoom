@@ -44,6 +44,10 @@ public class Projectile : MonoBehaviour
     {
         if (!other.GetComponent<Projectile>() && !other.GetComponent<CharacterController>())
         {
+            if (other.GetComponent<Enemy>())
+            {
+                other.GetComponent<Enemy>().TakeDamage();
+            }
             //Destroy(gameObject);
             Disable?.Invoke(this);
         }

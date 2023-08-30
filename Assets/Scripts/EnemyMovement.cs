@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
@@ -18,17 +19,22 @@ public class EnemyMovement : MonoBehaviour
     }
     private void Start()
     {
-        StartCoroutine(FollowTarget());
+        //StartCoroutine(FollowTarget());
     }
 
     private IEnumerator FollowTarget()
     {
         WaitForSeconds wait = new WaitForSeconds(updateSpeed);
 
-        while (enabled)
+        while (gameObject.activeSelf)
         {
             agent.SetDestination(target.transform.position);
             yield return wait;
         }
+    }
+
+    public void StartFollowTarget()
+    {
+        StartCoroutine(FollowTarget());
     }
 }
